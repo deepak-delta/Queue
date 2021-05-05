@@ -5,7 +5,7 @@ const ProfileScreen = () => {
   return (
     <>
       <View>
-        <Text>hi</Text>
+        <Text>hello theere!</Text>
       </View>
     </>
   );
