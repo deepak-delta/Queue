@@ -8,6 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import colors from '../utils/colors';
+import {windowHeight, windowWidth} from '../utils/Dimension';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -21,14 +22,13 @@ const HomeScreen = ({navigation}) => {
           name="menu"
           size={30}
           color="#a2a2db"
-          style={{width: 20}}
         />
         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <MaterialCommunityIcons
             name="account-circle"
             size={33}
             color="#a2a2db"
-            style={{marginLeft: 230}}
+            style={{marginLeft: windowWidth/1.5}}
           />
         </TouchableOpacity>
       </View>
@@ -37,7 +37,7 @@ const HomeScreen = ({navigation}) => {
         <Text style={styles.heading}>Hello</Text>
 
         <Text style={styles.subHeading}>
-          Lorem ipsum dolor sit amet, consectetuer adipscing elit.
+          
         </Text>
 
         <View style={styles.buttonContainer}>
@@ -66,7 +66,7 @@ const HomeScreen = ({navigation}) => {
           <View
             style={{
               flexDirection: 'row',
-              width: 150,
+              width: 15,
               alignItems: 'center',
             }}>
             <View
@@ -95,8 +95,9 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   image: {
-    width: '100%',
-    height: '100%',
+    width: '105%',
+    height: '105%',
+    alignSelf: 'center'
   },
   navbar: {
     flexDirection: 'row',
