@@ -1,86 +1,74 @@
-import React, {useState} from 'react';
+import 'react-native-gesture-handler';
+import React from 'react';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import COLORS from '../utils/colors';
+import {View} from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import Profile from '../screens/Profile';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import firestore from '@react-native-firebase/firestore';
-import auth from '@react-native-firebase/auth';
-
-import colors from '../utils/colors';
+import Scan from '../screens/Scan';
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
-
-// const MyTabs = () => {
-//   const [isSubmitted, setSbumitted] = useState();
-
-//   return (
-//     <Tab.Navigator
-//       initialRouteName="Home"
-//       backBehavior="none"
-//       tabBarOptions={{
-//         activeTintColor: colors.icon,
-//         inactiveTintColor: colors.myColor,
-//         keyboardHidesTabBar: true,
-//         safeAreaInset: {bottom: 0, top: 'never'},
-//         style: {
-//           backgroundColor: colors.tab,
-//         },
-//       }}>
-//       <Tab.Screen
-//         name="Home"
-//         component={HomeScreen}
-//         options={{
-//           tabBarLabel: 'Home',
-
-//           tabBarIcon: ({color, size}) => (
-//             <MaterialCommunityIcons name="home" color={color} size={size} />
-//           ),
-//         }}
-//       />
-
-//       {/* <Tab.Screen
-//         name="Documents"
-//         component={DocNavigation}
-//         options={{
-//           tabBarLabel: 'Documents',
-//           tabBarIcon: ({ color, size }) => (
-//             <MaterialCommunityIcons name="file-document" color={color} size={size} />
-//           ),
-//         }}
-//       /> */}
-
-//       <Tab.Screen
-//         name="Profile"
-//         component={Profile}
-//         options={{
-//           tabBarLabel: 'Profile',
-//           tabBarIcon: ({color, size}) => (
-//             <MaterialCommunityIcons name="account" color={color} size={size} />
-//           ),
-//         }}
-//       />
-//     </Tab.Navigator>
-//   );
-// };
-
-// export default MyTabs;
 
 const AppStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Login">
-      <Stack.Screen
-        name="Home"
+    <Tab.Navigator
+      tabBarOptions={{
+        style: {
+          height: 55,
+          borderTopWidth: 0,
+          elevation: 0,
+        },
+        showLabel: false,
+        activeTintColor: COLORS.primary,
+      }}>
+      <Tab.Screen
+        name="HomeScreen"
         component={HomeScreen}
-        options={{header: () => null}}
+        options={{
+          tabBarIcon: ({color}) => (
+            <MaterialCommunityIcons name="home" color={color} size={28} />
+          ),
+        }}
       />
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
-        options={{header: () => null}}
+
+      <Tab.Screen
+        name="Scan"
+        component={Scan}
+        options={{
+          tabBarIcon: () => (
+            <View
+              style={{
+                height: 60,
+                width: 60,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: COLORS.white,
+                borderColor: COLORS.primary,
+                borderWidth: 2,
+                borderRadius: 30,
+                top: -25,
+                elevation: 5,
+              }}>
+              <MaterialCommunityIcons
+                name="qrcode-scan"
+                color={COLORS.primary}
+                size={28}
+              />
+            </View>
+          ),
+        }}
       />
-    </Stack.Navigator>
+      <Tab.Screen
+        name="Favorite"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({color}) => (
+            <MaterialCommunityIcons name="history" color={color} size={28} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 

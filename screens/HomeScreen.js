@@ -7,22 +7,16 @@ import {
   TextInput,
   StyleSheet,
 } from 'react-native';
-import colors from '../utils/colors';
+import {windowWidth, windowHeight} from '../utils/Dimension';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const HomeScreen = ({navigation}) => {
   return (
     <ImageBackground
-      source={require('../assets/images/back.png')}
+      source={require('../assets/images/back2.png')}
       style={styles.image}>
       <View style={styles.navbar}>
-        <MaterialCommunityIcons
-          name="menu"
-          size={30}
-          color="#a2a2db"
-          style={{width: 20}}
-        />
         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <MaterialCommunityIcons
             name="account-circle"
@@ -40,50 +34,14 @@ const HomeScreen = ({navigation}) => {
           Lorem ipsum dolor sit amet, consectetuer adipscing elit.
         </Text>
 
-        <View style={styles.buttonContainer}>
-          <View style={styles.btn}>
-            <MaterialCommunityIcons
-              name="office-building"
-              color="white"
-              size={32}
-            />
-          </View>
-
-          <View style={styles.btn}>
-            <MaterialCommunityIcons name="bus" color="white" size={32} />
-          </View>
-        </View>
-
         <View style={styles.ticket}>
-          <Image
-            source={require('../assets/images/3.jpg')}
-            style={{
-              width: 100,
-              borderRadius: 100,
-              height: 100,
-            }}
-          />
-          <View
-            style={{
-              flexDirection: 'row',
-              width: 150,
-              alignItems: 'center',
-            }}>
-            <View
-              style={{
-                paddingHorizontal: 5,
-                paddingVertical: 5,
-              }}>
-              <Text
-                style={{
-                  fontFamily: 'RobotoRegular',
-                  fontSize: 11,
-                  color: '#a2a2db',
-                }}>
-                Lorem impsum dolor sit amet, consectetuer adipscing elit,
-              </Text>
-            </View>
-          </View>
+          {/* <Text style={styles.ticketText}>Scan to join queue</Text> */}
+          <Text style={styles.ticketNumber}>007</Text>
+          <Text style={styles.ticketCurrent}>Current Token 002</Text>
+          <Text style={styles.ticketDate}>Token Date 01/02/2021</Text>
+          <Text style={styles.ticketDate}>Token Time 10:52 AM</Text>
+          <Text style={styles.ticketService}>Service : Shop</Text>
+          <Text style={styles.ticketService}>Location: abdc</Text>
         </View>
       </View>
     </ImageBackground>
@@ -120,27 +78,40 @@ const styles = StyleSheet.create({
     fontFamily: 'RobotoRegular',
     color: '#a2a2db',
   },
-  buttonContainer: {
-    flexDirection: 'row',
-    marginTop: 40,
-    alignItems: 'center',
-    paddingHorizontal: 40,
-  },
-  btn: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 66,
-    width: 66,
-    borderRadius: 50,
-    backgroundColor: '#ff5c83',
-    marginHorizontal: 22,
-  },
+
   ticket: {
-    backgroundColor: '#ffffff',
-    height: 300,
-    width: 280,
-    borderRadius: 15,
-    padding: 5,
-    marginTop: 110,
+    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: '#A4A4DC',
+    height: windowHeight / 2.6,
+    width: windowWidth / 1.1,
+    marginTop: windowHeight / 5.5,
+    borderRadius: 50,
+  },
+
+  ticketText: {
+    textAlign: 'center',
+    color: '#ECECFB',
+    marginTop: 100,
+  },
+  ticketNumber: {
+    textAlign: 'center',
+    color: '#ECECFB',
+    fontSize: 100,
+  },
+  ticketCurrent: {
+    textAlign: 'center',
+    color: '#ECECFB',
+    fontSize: 30,
+  },
+  ticketDate: {
+    textAlign: 'center',
+    color: '#ECECFB',
+    fontSize: 20,
+  },
+  ticketService: {
+    textAlign: 'center',
+    color: '#ECECFB',
+    fontSize: 15,
   },
 });

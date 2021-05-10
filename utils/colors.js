@@ -1,14 +1,10 @@
-export default {
-    bg: '#121212',
-    bg2: '#1a1a1a',
-    tab: '#1a1a1a',
-    currenttab: '#323bae',
-    myColor: '#bfbfbf',
-    button: "#7e8ce0",
-    icon: '#189ad3',
-    topicon: '#00b300',
-    red:'#8d021f',
-    white:'white'
+const COLORS = {
+  white: '#FFF',
+  dark: '#000',
+  primary: '#845EC2',
+  secondary: '#B39CD0',
+  light: '#FBEAFF',
+  grey: '#908e8c',
 };
 
-//import colors from '../utils/colors.js#279da5'
+export default COLORS;
