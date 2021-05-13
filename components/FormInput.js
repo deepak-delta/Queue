@@ -5,7 +5,7 @@ import {windowHeight, windowWidth} from '../utils/Dimension';
 
 import ErrorMessage from './ErrorMessage';
 
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 
@@ -16,7 +16,7 @@ const FormInput = ({name, placeholderText, iconType, password, ...rest}) => {
     <View>
       <View style={styles.inputContainer}>
         <View style={styles.iconStyle}>
-          <AntDesign name={iconType} size={25} color="#666" />
+          <Icon name={iconType} size={25} color="#666" />
         </View>
 
         {password ? (

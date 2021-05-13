@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {
   View,
   Text,
@@ -6,13 +6,16 @@ import {
   ImageBackground,
   TextInput,
   StyleSheet,
+  TouchableOpacity
 } from 'react-native';
 import colors from '../utils/colors';
 import {windowHeight, windowWidth} from '../utils/Dimension';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const HomeScreen = ({navigation}) => {
+
+
+const HomeScreen = ({ navigation }) => {
   return (
     <ImageBackground
       source={require('../assets/images/back.png')}
@@ -23,7 +26,7 @@ const HomeScreen = ({navigation}) => {
           size={30}
           color="#a2a2db"
         />
-        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+        <TouchableOpacity onPress={() =>  navigation.navigate('Profile')}>
           <MaterialCommunityIcons
             name="account-circle"
             size={33}
@@ -41,17 +44,17 @@ const HomeScreen = ({navigation}) => {
         </Text>
 
         <View style={styles.buttonContainer}>
-          <View style={styles.btn}>
+          <TouchableOpacity onPress={() => navigation.navigate('ScanPage')} style={styles.btn}>
             <MaterialCommunityIcons
-              name="office-building"
+              name="bank-plus"
               color="white"
               size={32}
             />
-          </View>
+          </TouchableOpacity>
 
-          <View style={styles.btn}>
-            <MaterialCommunityIcons name="bus" color="white" size={32} />
-          </View>
+          <TouchableOpacity onPress={() => {navigation.navigate('InstitutionForm')}} style={styles.btn}>
+            <MaterialCommunityIcons name="qrcode-scan" color="white" size={32} />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.ticket}>
@@ -66,7 +69,7 @@ const HomeScreen = ({navigation}) => {
           <View
             style={{
               flexDirection: 'row',
-              width: 15,
+              width: 150,
               alignItems: 'center',
             }}>
             <View
@@ -86,6 +89,7 @@ const HomeScreen = ({navigation}) => {
           </View>
         </View>
       </View>
+
     </ImageBackground>
   );
 
@@ -135,17 +139,14 @@ const styles = StyleSheet.create({
     width: 66,
     borderRadius: 50,
     backgroundColor: '#ff5c83',
-    marginHorizontal: 22,
+    marginHorizontal: 28,
   },
   ticket: {
     backgroundColor: '#ffffff',
     height: 300,
-    width: 280,
+    width: windowWidth/1.2,
     borderRadius: 15,
-    padding: 5,
+    padding: 15,
     marginTop: 110,
   },
-  btn: {
-    margin: 5
-  }
 });
