@@ -44,7 +44,7 @@ const HomeScreen = ({ navigation }) => {
         </Text>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ScanPage')} style={styles.btn}>
+          <TouchableOpacity onPress={() => navigation.navigate('InstitutionForm')} style={styles.btn}>
             <MaterialCommunityIcons
               name="bank-plus"
               color="white"
@@ -52,7 +52,7 @@ const HomeScreen = ({ navigation }) => {
             />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => {navigation.navigate('InstitutionForm')}} style={styles.btn}>
+          <TouchableOpacity onPress={() => {navigation.navigate('ScanPage')}} style={styles.btn}>
             <MaterialCommunityIcons name="qrcode-scan" color="white" size={32} />
           </TouchableOpacity>
         </View>

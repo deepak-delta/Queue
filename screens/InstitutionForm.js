@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Text, TouchableOpacity, Image, StyleSheet, ImageBackground} from 'react-native';
+import {Text, TouchableOpacity, Image, StyleSheet, ImageBackground, View} from 'react-native';
 import * as Yup from 'yup';
 
 import FormInput from '../components/FormInput';
@@ -36,17 +36,26 @@ const InstitutionForm = ({navigation}) => {
           
         <ImageBackground
           source={require('../assets/images/back.png')}
-          style={styles.image}>
+          style={styles.backImage}>
           
-          {/* <Image
-            source={require('../assets/login.png')}
-            resizeMode="center"
-            style={styles.image}
-          /> */}
+          <View style={{flex:3}}>
+            {/* <Image
+              source={require('../assets/login.png')}
+              resizeMode="center"
+              style={styles.image}
+            /> */}
+          </View>
+          <View style={{
+              flex: 1,
+              
+              
+              padding: 40
+            }}>
           <Form
             initialValues={{InstitutionName: '', place:'', UpiId: ''}}
             onSubmit={handleSubmit}
             validationSchema={validationSchema}
+            
             
             >
             <FormInput
@@ -74,6 +83,7 @@ const InstitutionForm = ({navigation}) => {
               buttonStyle={styles.buttonContainer}
             />
           </Form>
+          </View>
         </ImageBackground>
       </KeyboardAwareScrollView>
       
@@ -84,10 +94,14 @@ const InstitutionForm = ({navigation}) => {
 export default InstitutionForm;
 
 const styles = StyleSheet.create({
-  image: {
+  backImage: {
     width: '105%',
     height: '105%',
     alignSelf: 'center'
+  },
+  image: {
+    alignSelf: 'center',
+    flex: 1
   },
   buttonText: {
     fontSize: 18,

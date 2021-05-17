@@ -17,7 +17,12 @@ const Stack = createStackNavigator();
 
 const AppStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName="DisplayQr">
+      <Stack.Screen
+        name="DisplayQr"
+        component={DisplayQr}
+        options={{header: () => null}}
+      />
       <Stack.Screen
         name="Home"
         component={HomeScreen}
@@ -38,11 +43,7 @@ const AppStack = () => {
         component={InstitutionForm}
         options={{header: () => null}}
       />
-      <Stack.Screen
-        name="DisplayQr"
-        component={DisplayQr}
-        options={{header: () => null}}
-      />
+      
       
       {/* <Stack.Screen
         name="ScanPage"
