@@ -6,16 +6,33 @@ import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import Form from '../components/Form';
 import {AuthContext} from '../navigation/AuthProvider';
-
+import firestore from '@react-native-firebase/firestore';
 import {windowHeight, windowWidth} from '../utils/Dimension';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import auth from '@react-native-firebase/auth';
 
 const InstitutionForm = ({navigation}) => {
-  const source = require('../assets/animations/loading.json');
-  const {login, server, status, code, loading} = useContext(AuthContext);
 
-  const handleSubmit = () => {
-    console.log('h');
+  const handleSubmit = ({InstitutionName, Place, UpiId}) => {
+      const userId = auth().currentUser.uid;
+      firestore()
+      .collection('Queues')
+      .doc(userId)
+      .set({
+        InstitutionName: InstitutionName,
+        Place: Place,
+        UpiId: UpiId,
+        TotalT: 0,
+        CurrentT:0,
+        Tokens: {0: 'x'}
+      })
+      .then(() => {
+        console.log('Queue added!');
+      })
+      .catch((error) => {
+        console.error("Error writing document: ", error);
+    });
+    navigation.navigate('DisplayQr', {userId: userId});
   };
 
   const validationSchema = Yup.object().shape({
@@ -52,7 +69,7 @@ const InstitutionForm = ({navigation}) => {
               padding: 40
             }}>
           <Form
-            initialValues={{InstitutionName: '', place:'', UpiId: ''}}
+            initialValues={{InstitutionName: '', Place:'', UpiId: ''}}
             onSubmit={handleSubmit}
             validationSchema={validationSchema}
             
@@ -66,8 +83,8 @@ const InstitutionForm = ({navigation}) => {
             />
 
             <FormInput
-              name="place"
-              placeholderText='place'
+              name="Place"
+              placeholderText='Place'
               iconType='source-commit-start-next-local'
             />
 

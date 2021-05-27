@@ -15,7 +15,10 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation, route }) => {
+
+  console.log(route.params);
+
   return (
     <ImageBackground
       source={require('../assets/images/back.png')}
