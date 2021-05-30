@@ -11,6 +11,7 @@ import ScanPage from '../screens/ScanPage';
 import colors from '../utils/colors';
 import InstitutionForm from '../screens/InstitutionForm';
 import DisplayQr from '../screens/DisplayQr';
+import Dashboard from '../screens/Dashboard';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -21,6 +22,11 @@ const AppStack = () => {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
+        options={{header: () => null}}
+      />
+      <Stack.Screen
+        name="Dashboard"
+        component={Dashboard}
         options={{header: () => null}}
       />
       <Stack.Screen

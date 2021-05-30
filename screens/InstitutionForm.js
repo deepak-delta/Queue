@@ -24,7 +24,7 @@ const InstitutionForm = ({navigation}) => {
         UpiId: UpiId,
         TotalT: 0,
         CurrentT:0,
-        Tokens: {0: 'x'}
+        Tokens: {}
       })
       .then(() => {
         console.log('Queue added!');

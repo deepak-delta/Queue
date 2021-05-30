@@ -68,7 +68,7 @@ const LoginScreen = ({navigation}) => {
           <FormInput
             name="email"
             placeholderText="Email"
-            iconType="user"
+            iconType="email"
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}

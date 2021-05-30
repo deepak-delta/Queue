@@ -7,12 +7,19 @@ const ScanPage = ({navigation}) => {
 
     const [userId, setuserId] = useState(auth().currentUser.uid);
     const [code, setCode] = useState(null);
-
+    const [token, settoken] = useState(null);
+    
     useEffect(() => {
         if(code){
             fetchData();
         }
     },[code]);
+
+    useEffect(() => {
+        if(token){
+            navigation.navigate("Home",{code, token});
+        }
+    }, [token])
 
     const fetchData = () => {
         firestore()
@@ -22,12 +29,13 @@ const ScanPage = ({navigation}) => {
             .then((doc) => {
             if (doc.exists) {
                 const newTokenNumber = doc.data().TotalT + 1;
+                settoken(newTokenNumber);
                 firestore()
                     .collection('Queues')
                     .doc(code)
                     .set({
-                        Tokens: {[newTokenNumber]: userId},
-                        TotalT: newTokenNumber
+                        Tokens: {[newTokenNumber]: userId },
+                        TotalT: newTokenNumber,
                     }, { merge: true })
                     .then(() => {
                     console.log("Document successfully written!");
@@ -43,13 +51,13 @@ const ScanPage = ({navigation}) => {
             console.log("Error getting document:", error);
         });
         
+        
     };
 
          
     const onSuccess = (e) => {
         const d = e.data;
-        setCode(d);
-        navigation.navigate("Home",);
+        setCode(d);   
     }
 
    

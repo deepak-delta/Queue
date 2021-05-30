@@ -43,6 +43,7 @@
     "react-native-webview": "^9.4.0",
     "reanimated-bottom-sheet": "^1.0.0-alpha.22",
     "rn-sliding-up-panel": "^2.4.5",
+    "use-force-update": "^1.0.7",
     "use-state-with-callback": "^2.0.3",
     "yup": "^0.32.8"
   },
