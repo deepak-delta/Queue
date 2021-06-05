@@ -74,7 +74,12 @@ const SignupScreen = ({navigation}) => {
         <Text style={styles.text}>Create an account</Text>
 
         <Form
-          initialValues={{firstname:'',email: '', password: '', confirmPassword: ''}}
+          initialValues={{
+            firstname: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+          }}
           onSubmit={handleSubmit}
           validationSchema={validationSchema}>
           <ErrorMessage
@@ -86,7 +91,7 @@ const SignupScreen = ({navigation}) => {
           <FormInput
             name="firstname"
             placeholderText="Name"
-            iconType="user"
+            iconType="human-male"
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}

@@ -39,6 +39,7 @@
     "react-native-screens": "^2.16.1",
     "react-native-share": "^5.1.0",
     "react-native-svg": "^9.13.6",
+    "react-native-upi-payment": "^1.0.2",
     "react-native-vector-icons": "^7.1.0",
     "react-native-webview": "^9.4.0",
     "reanimated-bottom-sheet": "^1.0.0-alpha.22",

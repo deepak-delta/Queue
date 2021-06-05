@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -6,7 +6,7 @@ import {
   ImageBackground,
   TextInput,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import colors from '../utils/colors';
 import {windowHeight, windowWidth} from '../utils/Dimension';
@@ -15,10 +15,9 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
-import { parseSync } from '@babel/core';
+import {parseSync} from '@babel/core';
 
-
-const HomeScreen = ({ route, navigation }) => {;
+const HomeScreen = ({route, navigation}) => {
   const [code, setcode] = useState(null);
   const [token, settoken] = useState(null);
   const [doc, setdoc] = useState(null);
@@ -26,9 +25,9 @@ const HomeScreen = ({ route, navigation }) => {;
   const data = route.params;
 
   useEffect(() => {
-    if(data){
-      setcode(data.code)
-      settoken(data.token)
+    if (data) {
+      setcode(data.code);
+      settoken(data.token);
       const subscriber = firestore()
         .collection('Queues')
         .doc(data.code)
@@ -40,25 +39,18 @@ const HomeScreen = ({ route, navigation }) => {;
     }
   }, [data]);
 
-  
-
- 
   return (
     <ImageBackground
       source={require('../assets/images/back.png')}
       style={styles.image}>
       <View style={styles.navbar}>
-        <MaterialCommunityIcons
-          name="menu"
-          size={30}
-          color="#a2a2db"
-        />
-        <TouchableOpacity onPress={() =>  navigation.navigate('Profile')}>
+        <MaterialCommunityIcons name="menu" size={30} color="#a2a2db" />
+        <TouchableOpacity onPress={() => navigation.navigate('Profile', {doc})}>
           <MaterialCommunityIcons
             name="account-circle"
             size={33}
             color="#a2a2db"
-            style={{marginLeft: windowWidth/1.5}}
+            style={{marginLeft: windowWidth / 1.5}}
           />
         </TouchableOpacity>
       </View>
@@ -66,45 +58,59 @@ const HomeScreen = ({ route, navigation }) => {;
       <View style={styles.container}>
         <Text style={styles.heading}>Hello</Text>
 
-        <Text style={styles.subHeading}>
-          
-        </Text>
+        <Text style={styles.subHeading}></Text>
 
-        { !code && <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('InstitutionForm')} style={styles.btn}>
-            <MaterialCommunityIcons
-              name="bank-plus"
-              color="white"
-              size={32}
-            />
-          </TouchableOpacity>
+        {!code && (
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('InstitutionForm')}
+              style={styles.btn}>
+              <MaterialCommunityIcons
+                name="bank-plus"
+                color="white"
+                size={32}
+              />
+            </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => {navigation.navigate('ScanPage')}} style={styles.btn}>
-            <MaterialCommunityIcons name="qrcode-scan" color="white" size={32} />
-          </TouchableOpacity>
-        </View>}
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('ScanPage');
+              }}
+              style={styles.btn}>
+              <MaterialCommunityIcons
+                name="qrcode-scan"
+                color="white"
+                size={32}
+              />
+            </TouchableOpacity>
+          </View>
+        )}
 
         <View style={styles.ticket}>
-          {code?
-          ( doc && <View>
-              <Text style={styles.ticketNumber}>{token}</Text>
-              <Text style={styles.ticketCurrent}>Current Token: {doc.CurrentT}</Text>
-              {/* <Text style={styles.ticketDate}>Token Date 01/02/2021</Text>
+          {code ? (
+            doc && (
+              <View>
+                <Text style={styles.ticketNumber}>{token}</Text>
+                <Text style={styles.ticketCurrent}>
+                  Current Token: {doc.CurrentT}
+                </Text>
+                {/* <Text style={styles.ticketDate}>Token Date 01/02/2021</Text>
               <Text style={styles.ticketDate}>Token Time 10:52 AM</Text> */}
-              <Text style={styles.ticketService}>Institution: {doc.InstitutionName}</Text>
-              <Text style={styles.ticketService}>Location: {doc.Place}</Text>
-            </View>)
-            :
-          ( <View>
-            <Text>Scan the Qr Code to join the Queue</Text>
-          </View> )
-            }
+                <Text style={styles.ticketService}>
+                  Institution: {doc.InstitutionName}
+                </Text>
+                <Text style={styles.ticketService}>Location: {doc.Place}</Text>
+              </View>
+            )
+          ) : (
+            <View>
+              <Text>Scan the Qr Code to join the Queue</Text>
+            </View>
+          )}
         </View>
       </View>
-
     </ImageBackground>
   );
-
 };
 
 export default HomeScreen;
@@ -113,7 +119,7 @@ const styles = StyleSheet.create({
   image: {
     width: '105%',
     height: '105%',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   navbar: {
     flexDirection: 'row',
@@ -173,7 +179,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ECECFB',
     fontSize: 100,
-    paddingTop: 40
+    paddingTop: 40,
   },
   ticketCurrent: {
     textAlign: 'center',
